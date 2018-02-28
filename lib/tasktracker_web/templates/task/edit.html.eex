@@ -1,0 +1,19 @@
+<h2>Edit Task</h2>
+<script>
+  window.timeblock_path = "<%= timeblock_path(@conn, :index) %>"
+
+</script>
+<button class = "start_button btn btn-secondary btn-xs"
+           data-task-id = "<%= @task.id %>">
+Start Working
+</button>
+
+<button class = "stop_button btn btn-secondary btn-xs"
+        data-task-id = "<%= @task.id %>">
+Stop Working
+</button>
+
+
+<%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
+
+<span><%= link "Back", to: "/agenda" %></span>

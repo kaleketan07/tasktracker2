@@ -1,0 +1,5 @@
+<h2>Create Task:</h2>
+
+<%= render "new_task.html", Map.put(assigns, :action, task_path(@conn, :create)) %>
+
+<span><%= link "Back", to: "/agenda" %></span>

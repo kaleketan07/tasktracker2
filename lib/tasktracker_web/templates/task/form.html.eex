@@ -1,0 +1,68 @@
+
+
+
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :body, class: "control-label" %>
+    <%= textarea f, :body, class: "form-control" %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :status, class: "control-label" %>
+    <%= checkbox f, :status, class: "checkbox" %>
+    <%= error_tag f, :status %>
+  </div>
+
+
+  <h3> Time spent on this task:</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Timeblock id</th>
+          <th>Start time</th>
+          <th>Stop time</th>
+
+        </tr>
+      </thead>
+      <tbody>
+    <%= for t <- @timeblocks do %>
+        <tr>
+          <td><%= t.id %></td>
+
+
+
+          <td><%= DateTime.to_string(t.starttime) %></td>
+          <td><%= DateTime.to_string(t.endtime) %></td>
+          <td><span><%= link "Delete", to: timeblock_path(@conn, :delete, t.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          </td>
+        </tr>
+    <% end %>
+      </tbody>
+    </table>
+
+
+
+  <div class="form-group">
+    <%= label f, "Assigned-to (assigned to self if no option chosen)", class: "control-label" %>
+    <%= select f, :user_id, @underling_users ,class: "form-control", selected: @current_user.id  %>
+    <!-- <%= text_input f, :user_id, class: "form-control" %> -->
+    <%= error_tag f, :user_id %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
