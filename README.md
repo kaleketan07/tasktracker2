@@ -1,4 +1,4 @@
-# Tasktracker
+# Tasktracker - with additional features 
 
 Additional features in this Task tracking application:
 
@@ -21,4 +21,3 @@ Major Design Decisions:
 - Also, at the time of user creation a list of all existing users is provided so that he can choose his manager
 - The timeblocks table is added and is based on a many-to-one relationship with the tasks table
 - A task "has-many" timeblocks, and a timeblock "belongs_to" a task
-# tasktracker2
