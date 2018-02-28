@@ -17,5 +17,6 @@ defmodule Tasktracker.Accounts.User do
     user
     |> cast(attrs, [:email, :name, :manager_id])
     |> validate_required([:email, :name])
+    |> validate_format(:email, "~r/@/")
   end
 end
